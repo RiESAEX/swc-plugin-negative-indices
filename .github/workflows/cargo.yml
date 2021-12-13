@@ -6,9 +6,53 @@ on:
       - v*
 
 jobs:    
-  compile:
-    name: compile rust
+  linux-musl:
+    name: compile x86_64-unknown-linux-musl
     runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Install Rust
+        uses: actions-rs/toolchain@v1
+        with:
+          profile: minimal
+      - name: Build
+        run: |
+          rustup -V
+          rustup toolchain list
+          cargo -V
+          cd swc-plugin-negative-indices
+          cargo build --release
+      - name: publish
+        uses: softprops/action-gh-release@v1
+        with:
+          files: swc-plugin-negative-indices/target/release/libswc_plugin_negative_indices.so
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  windows-msvc:
+    name: compile x86_64-pc-windows-msvc
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Install Rust
+        uses: actions-rs/toolchain@v1
+        with:
+          profile: minimal
+      - name: Build
+        run: |
+          rustup -V
+          rustup toolchain list
+          cargo -V
+          cd swc-plugin-negative-indices
+          cargo build --release
+      - name: publish
+        uses: softprops/action-gh-release@v1
+        with:
+          files: swc-plugin-negative-indices/target/release/swc_plugin_negative_indices.dll
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  apple-darwin:
+    name: compile x86_64-apple-darwin
+    runs-on: macos-10.15
     steps:
       - uses: actions/checkout@v2
       - name: Install Rust
@@ -24,12 +68,3 @@ jobs:
           cargo build --release
           cd target/release
           ls
-          echo $PWD
-      - name: path
-        run: echo $PWD
-      - name: publish
-        uses: softprops/action-gh-release@v1
-        with:
-          files: swc-plugin-negative-indices/target/release/libswc_plugin_negative_indices.so
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
