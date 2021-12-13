@@ -2,5 +2,6 @@
   "name": "swc-plugin-negative-indices",
   "version": "1.0.0",
   "main": "index.js",
+  "author": "RiESAEX <2597245950@qq.com>",
   "license": "MIT"
 }

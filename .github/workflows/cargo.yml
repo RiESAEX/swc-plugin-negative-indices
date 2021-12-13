@@ -1,0 +1,38 @@
+name: Build
+
+on:
+  push:
+    tags:
+      - v*
+
+jobs:    
+  compile:
+    name: compile rust
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Install Rust
+        uses: actions-rs/toolchain@v1
+        with:
+          profile: minimal
+      - name: Build
+        run: |
+          rustup -v
+          rustup toolchain list
+          cargo -v
+          cd swc-plugin-negative-indices
+          cargo build --release
+          cd target/release
+          ls 
+      - name: upload lib
+        uses: actions/upload-artifact@master
+        with: 
+          name: swc-plugin-negative-indices
+          path: swc-plugin-negative-indices.so
+      - name: publish
+        uses: softprops/action-gh-release@v1
+        with:
+          files: |
+            swc-plugin-negative-indices.so
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
