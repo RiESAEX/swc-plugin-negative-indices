@@ -25,8 +25,9 @@ jobs:
           cd target/release
           ls
           echo $PWD
-      - name: publish
+      - name: path
         run: echo $PWD
+      - name: publish
         uses: softprops/action-gh-release@v1
         with:
           files: libswc_plugin_negative_indices.so
