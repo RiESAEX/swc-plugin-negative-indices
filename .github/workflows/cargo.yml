@@ -24,15 +24,10 @@ jobs:
           cargo build --release
           cd target/release
           ls 
-      - name: upload lib
-        uses: actions/upload-artifact@master
-        with: 
-          name: swc-plugin-negative-indices
-          path: swc-plugin-negative-indices.so
       - name: publish
         uses: softprops/action-gh-release@v1
         with:
           files: |
-            swc-plugin-negative-indices.so
+            libswc_plugin_negative_indices.so
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
