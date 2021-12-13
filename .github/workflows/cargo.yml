@@ -17,9 +17,9 @@ jobs:
           profile: minimal
       - name: Build
         run: |
-          rustup -v
+          rustup -V
           rustup toolchain list
-          cargo -v
+          cargo -V
           cd swc-plugin-negative-indices
           cargo build --release
           cd target/release
