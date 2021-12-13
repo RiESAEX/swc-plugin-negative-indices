@@ -23,10 +23,12 @@ jobs:
           cd swc-plugin-negative-indices
           cargo build --release
           cd target/release
-          ls 
+          ls
+          echo $PWD
       - name: publish
+        run: echo $PWD
         uses: softprops/action-gh-release@v1
         with:
-          files: swc_plugin_negative_indices/target/release/libswc_plugin_negative_indices.so
+          files: libswc_plugin_negative_indices.so
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
