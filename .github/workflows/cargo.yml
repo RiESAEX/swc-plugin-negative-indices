@@ -66,5 +66,9 @@ jobs:
           cargo -V
           cd swc-plugin-negative-indices
           cargo build --release
-          cd target/release
-          ls
+      - name: publish
+        uses: softprops/action-gh-release@v1
+        with:
+          files: swc-plugin-negative-indices/target/release/libswc_plugin_negative_indices.dylib
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
