@@ -2,7 +2,9 @@ use serde::Deserialize;
 use swc_atoms::js_word;
 use swc_common::util::take::Take;
 use swc_common::DUMMY_SP;
-use swc_ecmascript::ast::{BinExpr, BinaryOp, Expr, Ident, Lit, Number, UnaryExpr, UnaryOp, ExprOrSuper};
+use swc_ecmascript::ast::{
+    BinExpr, BinaryOp, Expr, ExprOrSuper, Ident, Lit, Number, UnaryExpr, UnaryOp,
+};
 use swc_ecmascript::visit::{Fold, VisitMut};
 use swc_ecmascript::{ast::MemberExpr, visit::as_folder};
 use swc_plugin::define_js_plugin;
@@ -23,31 +25,29 @@ impl VisitMut for MyPlugin {
                 span,
                 op: UnaryOp::Minus,
                 arg,
-            }) => {
-                match &mut **arg {
-                    Expr::Lit(Lit::Num(num)) => {
-                        if num.value == 0.0 {
-                            return;
-                        };
-                        *expr.prop = Expr::Bin(BinExpr {
+            }) => match &mut **arg {
+                Expr::Lit(Lit::Num(num)) => {
+                    if num.value == 0.0 {
+                        return;
+                    };
+                    *expr.prop = Expr::Bin(BinExpr {
+                        span: DUMMY_SP,
+                        op: BinaryOp::Sub,
+                        left: Box::new(Expr::Member(MemberExpr {
                             span: DUMMY_SP,
-                            op: BinaryOp::Sub,
-                            left: Box::new(Expr::Member(MemberExpr {
+                            obj: expr.obj.clone(),
+                            prop: Box::new(Expr::Ident(Ident {
+                                sym: js_word!("length"),
                                 span: DUMMY_SP,
-                                obj: expr.obj.clone(),
-                                prop: Box::new(Expr::Ident(Ident {
-                                    sym: js_word!("length"),
-                                    span: DUMMY_SP,
-                                    optional: false,
-                                })),
-                                computed: false,
+                                optional: false,
                             })),
-                            right: arg.take(),
-                        });
-                    }
-                    _ => {}
+                            computed: false,
+                        })),
+                        right: arg.take(),
+                    });
                 }
-            }
+                _ => {}
+            },
             _ => {}
         }
     }
