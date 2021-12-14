@@ -30,6 +30,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: npm publish
         run: |
+          cp swc-plugin-negative-indices/target/release/libswc_plugin_negative_indices.so packages/linux-x64/
           cd packages/linux-x64
           echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" >> ~/.npmrc
           npm publish --access public
@@ -60,6 +61,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: npm publish
         run: |
+          cp swc-plugin-negative-indices/target/release/swc_plugin_negative_indices.dll packages/win-x64/
           cd packages/win-x64
           echo "//registry.npmjs.org/:_authToken=$env:NPM_TOKEN" >> ~/.npmrc
           npm publish --access public
@@ -90,6 +92,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: npm publish
         run: |
+          cp swc-plugin-negative-indices/target/release/libswc_plugin_negative_indices.dylib packages/mac-x64/
           cd packages/mac-x64
           echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" >> ~/.npmrc
           npm publish --access public
