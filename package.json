@@ -1,6 +1,6 @@
 {
   "name": "swc-plugin-negative-indices",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "main": "index.js",
   "author": "RiESAEX <2597245950@qq.com>",
   "files":[], 
@@ -10,8 +10,8 @@
   },
   "license": "MIT",
   "optionalDependencies": {
-    "swc-plugin-negative-indices-mac-x64":"1.0.0",
-    "swc-plugin-negative-indices-linux-x64":"1.0.0",
-    "swc-plugin-negative-indices-win-x64":"1.0.0"
+    "swc-plugin-negative-indices-mac-x64":"1.0.1",
+    "swc-plugin-negative-indices-linux-x64":"1.0.1",
+    "swc-plugin-negative-indices-win-x64":"1.0.1"
   }
 }
