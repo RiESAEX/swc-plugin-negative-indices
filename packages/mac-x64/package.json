@@ -1,6 +1,6 @@
 {
   "name": "swc-plugin-negative-indices-darwin-x64",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "main": "libswc_plugin_negative_indices.dylib",
   "author": "RiESAEX <2597245950@qq.com>",
   "license": "MIT",
