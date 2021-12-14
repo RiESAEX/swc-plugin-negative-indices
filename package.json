@@ -3,5 +3,15 @@
   "version": "1.0.0",
   "main": "index.js",
   "author": "RiESAEX <2597245950@qq.com>",
-  "license": "MIT"
+  "files":[], 
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/RiESAEX/swc-plugin-negative-indices.git"
+  },
+  "license": "MIT",
+  "optionalDependencies": {
+    "swc-plugin-negative-indices-mac-x64":"1.0.0",
+    "swc-plugin-negative-indices-linux-x64":"1.0.0",
+    "swc-plugin-negative-indices-win-x64":"1.0.0"
+  }
 }

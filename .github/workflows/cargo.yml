@@ -22,12 +22,20 @@ jobs:
           cargo -V
           cd swc-plugin-negative-indices
           cargo build --release
-      - name: publish
+      - name: github publish
         uses: softprops/action-gh-release@v1
         with:
           files: swc-plugin-negative-indices/target/release/libswc_plugin_negative_indices.so
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: npm publish
+        run: |
+          cd packages/linux-x64
+          echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" >> ~/.npmrc
+          npm publish --access public
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
   windows-msvc:
     name: compile x86_64-pc-windows-msvc
     runs-on: windows-latest
@@ -44,12 +52,20 @@ jobs:
           cargo -V
           cd swc-plugin-negative-indices
           cargo build --release
-      - name: publish
+      - name: github publish
         uses: softprops/action-gh-release@v1
         with:
           files: swc-plugin-negative-indices/target/release/swc_plugin_negative_indices.dll
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: npm publish
+        run: |
+          cd packages/win-x64
+          echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" >> ~/.npmrc
+          npm publish --access public
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
   apple-darwin:
     name: compile x86_64-apple-darwin
     runs-on: macos-10.15
@@ -66,9 +82,26 @@ jobs:
           cargo -V
           cd swc-plugin-negative-indices
           cargo build --release
-      - name: publish
+      - name: github publish
         uses: softprops/action-gh-release@v1
         with:
           files: swc-plugin-negative-indices/target/release/libswc_plugin_negative_indices.dylib
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: npm publish
+        run: |
+          cd packages/mac-x64
+          echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" >> ~/.npmrc
+          npm publish --access public
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+  publish-npm:
+    needs:
+      - linux-musl
+      - windows-msvc
+      - apple-darwin
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: publish

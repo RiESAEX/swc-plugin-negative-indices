@@ -1,0 +1,9 @@
+{
+  "name": "swc-plugin-negative-indices-linux-x64",
+  "version": "1.0.0",
+  "main": "libswc_plugin_negative_indices.so",
+  "author": "RiESAEX <2597245950@qq.com>",
+  "license": "MIT",
+  "os":["linux"],
+  "cpu":["x64"]
+}

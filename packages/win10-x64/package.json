@@ -1,0 +1,9 @@
+{
+  "name": "swc-plugin-negative-indices-win-x64",
+  "version": "1.0.0",
+  "main": "swc_plugin_negative_indices.dll",
+  "author": "RiESAEX <2597245950@qq.com>",
+  "license": "MIT",
+  "os":["win"],
+  "cpu":["x64"]
+}
