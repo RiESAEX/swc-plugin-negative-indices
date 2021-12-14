@@ -10,8 +10,8 @@
   },
   "license": "MIT",
   "optionalDependencies": {
-    "swc-plugin-negative-indices-mac-x64":"1.0.1",
-    "swc-plugin-negative-indices-linux-x64":"1.0.1",
-    "swc-plugin-negative-indices-win-x64":"1.0.1"
+    "swc-plugin-negative-indices-darwin-x64":"1.0.0",
+    "swc-plugin-negative-indices-linux-x64-musl":"1.0.0",
+    "swc-plugin-negative-indices-win32-x64-msvc":"1.0.0"
   }
 }
