@@ -91,7 +91,7 @@ jobs:
       - name: npm publish
         run: |
           cd packages/mac-x64
-          echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" >> ~/.npmrc
+          echo "//registry.npmjs.org/:_authToken=$env:NPM_TOKEN" >> ~/.npmrc
           npm publish --access public
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
