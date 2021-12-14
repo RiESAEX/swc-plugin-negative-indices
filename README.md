@@ -21,7 +21,7 @@ to
 }
 ```
 ## Compatibility
-I made this just for fun, let's see how many breaks unitl swc v2
+I made this just for fun, let's see how many breaks unitl swc rust plugin api stable
 
 |plugin|@swc/core|
 |--|--|
