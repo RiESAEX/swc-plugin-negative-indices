@@ -2,10 +2,8 @@ use serde::Deserialize;
 use swc_atoms::js_word;
 use swc_common::util::take::Take;
 use swc_common::DUMMY_SP;
-use swc_ecmascript::ast::{
-    BinExpr, BinaryOp, Expr, ExprOrSuper, Ident, Lit, Number, UnaryExpr, UnaryOp,
-};
-use swc_ecmascript::visit::{Fold, VisitMut};
+use swc_ecmascript::ast::{BinExpr, BinaryOp, Expr, Ident, Lit, UnaryExpr, UnaryOp};
+use swc_ecmascript::visit::{Fold, VisitMut, VisitMutWith};
 use swc_ecmascript::{ast::MemberExpr, visit::as_folder};
 use swc_plugin::define_js_plugin;
 define_js_plugin!(my_plugin);
@@ -20,9 +18,10 @@ struct MyPlugin;
 
 impl VisitMut for MyPlugin {
     fn visit_mut_member_expr(&mut self, expr: &mut MemberExpr) {
+        expr.visit_mut_children_with(self);
         match &mut *expr.prop {
             Expr::Unary(UnaryExpr {
-                span,
+                span: _,
                 op: UnaryOp::Minus,
                 arg,
             }) => match &mut **arg {
