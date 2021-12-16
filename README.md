@@ -25,4 +25,4 @@ I made this just for fun, let's see how many breaks unitl swc rust plugin api st
 
 |plugin|@swc/core|
 |--|--|
-|1.0.5 1.0.6 1.0.7|1.2.120|
+|1.0.5 1.0.6 1.0.7 1.0.8|1.2.120|
