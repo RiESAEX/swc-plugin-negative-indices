@@ -1,17 +1,17 @@
 {
   "name": "swc-plugin-negative-indices",
-  "version": "1.0.8",
+  "version": "1.1.1",
   "main": "index.js",
   "author": "RiESAEX <2597245950@qq.com>",
-  "files":[], 
+  "files": [],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/RiESAEX/swc-plugin-negative-indices.git"
   },
   "license": "MIT",
   "optionalDependencies": {
-    "swc-plugin-negative-indices-darwin-x64":"1.1.0",
-    "swc-plugin-negative-indices-linux-x64-musl":"1.1.0",
-    "swc-plugin-negative-indices-win32-x64-msvc":"1.1.0"
+    "swc-plugin-negative-indices-darwin-x64": "1.1.1",
+    "swc-plugin-negative-indices-linux-x64-musl": "1.1.1",
+    "swc-plugin-negative-indices-win32-x64-msvc": "1.1.1"
   }
 }
