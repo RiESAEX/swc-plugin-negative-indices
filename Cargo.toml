@@ -1,0 +1,12 @@
+[package]
+name = "swc-plugin-negative-indices"
+version = "0.1.0"
+edition = "2021"
+
+[lib]
+crate-type = ["cdylib"]
+
+[dependencies]
+serde = "1"
+swc_plugin = "*"
+serde_json="*"
